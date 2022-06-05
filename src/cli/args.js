@@ -1,3 +1,16 @@
+const keyRegex = /--/;
+
 export const parseArgs = () => {
-    // Write your code here 
+	const actualArgs = process.argv.slice(2);
+	const formatedArgs = [];
+
+	actualArgs.forEach((value, index) => {
+		if(keyRegex.test(value)){
+			formatedArgs.push(`${value.replace(keyRegex, '')} is ${actualArgs[index + 1]}`)
+		}
+	})
+
+	console.log(formatedArgs.join(', '));
 };
+
+parseArgs();
